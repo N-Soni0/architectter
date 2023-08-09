@@ -1,4 +1,4 @@
-import { useUserStore } from "@/store/userStore"
+import { useConvexAuth } from "convex/react";
 import { Navigate } from "react-router-dom";
 
 interface ProtectedRouteProps {
@@ -6,9 +6,9 @@ interface ProtectedRouteProps {
 }
 
 const PrivateRoute: React.FC<ProtectedRouteProps> = ({ children }) => {
-    const user = useUserStore(state => state.user);
+    const { isAuthenticated } = useConvexAuth();
 
-    if (!user) {
+    if (!isAuthenticated) {
         return <Navigate to={'/auth'} />
     } else {
         return <>{children}</>

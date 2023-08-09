@@ -6,11 +6,14 @@ import { useAuth0 } from "@auth0/auth0-react";
 const AuthButtons = () => {
     const { isAuthenticated,  } = useConvexAuth();
     const { user } = useAuth0();
+
+    
+
     
 	return <div>
         {isAuthenticated ? (
             <div className="flex gap-3 items-center">
-              <p className="text-lg text-base-300 font-semibold">{user?.name}</p>  
+              <p className="text-lg text-base-300 font-semibold">{user?.nickname}</p>  
 
               <LogoutButton />
             </div>

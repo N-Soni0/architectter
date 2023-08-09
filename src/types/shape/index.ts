@@ -7,8 +7,8 @@ export type Shape = {
 }
 
 export enum ShapePointConnectionKind {
-    STRAIGHT,
-    ROUNDED
+    STRAIGHT = "STRAIGHT",
+    ROUNDED = "ROUNDED"
 }
 
 export type ShapeTile = IStraightShapeTile | IRoundedShapeTile;

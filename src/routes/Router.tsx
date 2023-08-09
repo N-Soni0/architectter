@@ -1,10 +1,10 @@
-import { AuthPage } from '@/pages/AuthPage'
+import { MainPage } from '@/pages/MainPage'
 import { Route, Routes } from 'react-router-dom'
 
 const Router = () => {
   return (
     <Routes>
-        <Route path='/auth' element={<AuthPage />} />
+      <Route index element={<MainPage />} />
     </Routes>
   )
 }

@@ -15,7 +15,7 @@ interface Actions {
 
 export const useUserStore = create(
     immer<State & Actions>((set) => ({
-        isLoading: true,
+        isLoading: false,
         user: null,
 
         setLoading: (isLoading) => {

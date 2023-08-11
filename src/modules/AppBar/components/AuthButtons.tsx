@@ -1,19 +1,19 @@
 import LoginButton from "./LoginButton";
 import LogoutButton from "./LogoutButton";
-import { useConvexAuth } from "convex/react";
-import { useAuth0 } from "@auth0/auth0-react";
+import { useUserStore } from "@/store/userStore";
 
 const AuthButtons = () => {
-    const { isAuthenticated,  } = useConvexAuth();
-    const { user } = useAuth0();
-
+    const user = useUserStore(state => state.user);
+    const isLoading = useUserStore(state => state.isLoading);
     
-
+    if (isLoading) {
+        return <span className="loading loading-spinner loading-lg"></span>
+    }
     
 	return <div>
-        {isAuthenticated ? (
+        {user ? (
             <div className="flex gap-3 items-center">
-              <p className="text-lg text-base-300 font-semibold">{user?.nickname}</p>  
+              <p className="text-lg text-base-300 font-semibold">{user?.username}</p>  
 
               <LogoutButton />
             </div>

@@ -3,9 +3,11 @@ import { useUser } from "./hooks/useUser";
 import AppBar from "./modules/AppBar/AppBar";
 import Router from "./routes/Router";
 import { useUserStore } from "./store/userStore";
+import { usePopUpStore } from "./store/popUpStore";
 
 
 function App() {
+  const clearPopUps = usePopUpStore(state => state.clear);
   const userDoc = useUser();  
   const signIn = useUserStore(state => state.signIn)
 
@@ -16,7 +18,12 @@ function App() {
   }, [userDoc?._id, signIn])
 
   return (
-    <div className="flex min-h-screen flex-col">
+    <div 
+      onClick={() => {
+        clearPopUps();
+      }}
+      className="flex min-h-screen flex-col"
+    >
       <header>
         <AppBar />
       </header>

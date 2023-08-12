@@ -1,4 +1,3 @@
-import { generateId } from "@/utils/generateId";
 import { create } from "zustand";
 import { immer } from "zustand/middleware/immer";
 
@@ -13,13 +12,13 @@ interface State {
 }
 
 interface Actions {
-    push: (close: CloseCallback) => void;
+    push: (id: string, close: CloseCallback) => void;
     clear: () => void;
-    remove: (id: ID) => void;
+    remove: (id: string) => void;
 }
 
 export const usePopUpStore = create(
-    immer<State & Actions>((set) => ({
+    immer<State & Actions>((set, get) => ({
         popUps: [],
         
         clear: () => {
@@ -42,9 +41,10 @@ export const usePopUpStore = create(
             })
         },
 
-        push: (closeCallback) => {
-            const id = generateId();
-
+        push: (id, closeCallback) => {
+            // Check if popUp doesnt exist
+            if (get().popUps.find(popUp => popUp.id === id)) return;
+            
             set(store => {
                 store.popUps.push({
                     id, 

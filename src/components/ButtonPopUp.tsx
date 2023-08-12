@@ -77,7 +77,7 @@ const ButtonPopUpMenu: React.FC<ButtonPopUpMenuProps> = ({ items, componentId })
 	return (
 		<motion.div
 			key={componentId}
-			initial={{ opacity: 0, x: -20 }}
+			initial={{ opacity: 0, x: 0, }}
 			animate={{ opacity: 1, x: 20 }}
 			exit={{ opacity: 0, x: 40 }}
 			transition={{ duration: .3 }}

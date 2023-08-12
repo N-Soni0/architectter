@@ -1,5 +1,6 @@
 import { useComponentId } from '@/hooks/useComponentId';
 import { usePopUpStore } from '@/store/popUpStore';
+import { AnimatePresence, motion } from 'framer-motion';
 import { useEffect, useState } from 'react';
 import { twMerge } from 'tailwind-merge';
 
@@ -57,22 +58,33 @@ const ButtonPopUp: React.FC<ButtonPopUpProps> = ({
 				{children}
 			</button>
 
-			<ButtonPopUpMenu isOpened={isOpened} items={items} />
+			<AnimatePresence>
+				{(isOpened && componentId) ? (
+					<ButtonPopUpMenu items={items} componentId={componentId} />
+				) : null}
+				
+			</AnimatePresence>
 		</div>
 	);
 };
 
 interface ButtonPopUpMenuProps {	
 	items: ButtonPopUpItem[];
-	isOpened: boolean
+	componentId: string;
 }
 
-const ButtonPopUpMenu: React.FC<ButtonPopUpMenuProps> = ({ items, isOpened }) => {
+const ButtonPopUpMenu: React.FC<ButtonPopUpMenuProps> = ({ items, componentId }) => {
 	return (
-		<div
+		<motion.div
+			key={componentId}
+			initial={{ opacity: 0, x: -20 }}
+			animate={{ opacity: 1, x: 20 }}
+			exit={{ opacity: 0, x: 40 }}
+			transition={{ duration: .3 }}
+
+			
 			className={twMerge(
-				'absolute left-full top-0 translate-x-3 py-3 bg-base-200 rounded-sm w-40',
-				isOpened ? 'block' : 'hidden'
+				'absolute top-0 left-full py-3 bg-base-200 rounded-sm w-40'
 			)}
 		>
 			<ul className=''>
@@ -94,7 +106,7 @@ const ButtonPopUpMenu: React.FC<ButtonPopUpMenuProps> = ({ items, isOpened }) =>
 					</li>
 				))}
 			</ul>
-		</div>
+		</motion.div>
 	);
 };
 

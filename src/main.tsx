@@ -6,7 +6,7 @@ import { BrowserRouter } from 'react-router-dom';
 import { ConvexProviderWithAuth0 } from 'convex/react-auth0';
 import { ConvexReactClient } from 'convex/react';
 
-const convex = new ConvexReactClient(import.meta.env.VITE_CONVEX_URL as string);
+export const convex = new ConvexReactClient(import.meta.env.VITE_CONVEX_URL as string);
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
 	<Auth0Provider

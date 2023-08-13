@@ -32,7 +32,7 @@ const ButtonPopUp: React.FC<ButtonPopUpProps> = ({
 				className={className}
 				onClick={(e) => {
 					e.stopPropagation();
-					
+
 					toggle();
 					onClick && onClick(e);
 				}}
@@ -59,14 +59,14 @@ const ButtonPopUpMenu: React.FC<ButtonPopUpMenuProps> = ({ items, componentId })
 	return (
 		<motion.div
 			key={componentId}
-			initial={{ opacity: 0, x: 0, }}
+			initial={{ opacity: 0, x: 10, }}
 			animate={{ opacity: 1, x: 20 }}
 			exit={{ opacity: 0, x: 40 }}
 			transition={{ duration: .3 }}
 
 			
 			className={twMerge(
-				'absolute top-0 left-full py-3 bg-base-200 rounded-sm w-40 z-[1000]'
+				'absolute top-0 left-full py-3 bg-base-200 rounded-sm w-40 z-[900]'
 			)}
 		>
 			<ul className=''>

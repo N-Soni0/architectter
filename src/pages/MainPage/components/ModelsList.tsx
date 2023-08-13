@@ -16,7 +16,7 @@ const ModelsList: React.FC<ModelsListProps> = ({ models, isLoading }) => {
     }
 
     return (
-        <ul>
+        <ul className="flex gap-4 mt-2 overflow-auto">
             {models.map((model) => (
                 <ModelsListItem model={model} key={model._id} />
             ))}

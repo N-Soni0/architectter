@@ -21,7 +21,7 @@ const ButtonPopUp: React.FC<ButtonPopUpProps> = ({
 	className,
 	...props
 }) => {
-	const { isOpened, togglePopup, popupId } = usePopupController();
+	const { isOpened, toggle, popupId } = usePopupController();
 
 	return (
 		<div
@@ -32,7 +32,8 @@ const ButtonPopUp: React.FC<ButtonPopUpProps> = ({
 				className={className}
 				onClick={(e) => {
 					e.stopPropagation();
-					togglePopup();
+					
+					toggle();
 					onClick && onClick(e);
 				}}
 				{...props}

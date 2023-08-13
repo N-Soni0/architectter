@@ -4,13 +4,13 @@ import { useId } from "./useId";
 
 export const usePopupController = () => {
     const [isOpened, setIsOpened] = useState<boolean>(false);
+    const popupId = useId();
+
     const closePopup = usePopUpStore(state => state.close);
     const openPopup = usePopUpStore(state => state.open);
     const push = usePopUpStore(state => state.push);
     const remove = usePopUpStore(state => state.remove);
     
-    const popupId = useId();
-
     useEffect(() => {
         if (!popupId) return;
 
@@ -25,11 +25,21 @@ export const usePopupController = () => {
         }
     }, [popupId])
 
-    const togglePopup = () => {
+    const toggle = () => {
         if (!popupId) return;
 
         isOpened ? closePopup(popupId) : openPopup(popupId)
     }
 
-    return { isOpened, popupId, closePopup, openPopup, togglePopup }
+    const close = () => {
+        if (!popupId) return;
+        closePopup(popupId)
+    }
+
+    const open = () => {
+        if (!popupId) return;
+        openPopup(popupId)
+    }
+
+    return { isOpened, popupId, close, open, toggle }
 }

@@ -14,7 +14,10 @@ import type {
   FilterApi,
   FunctionReference,
 } from "convex/server";
-import type * as models from "../models";
+import type * as models_delete from "../models/delete";
+import type * as models_get from "../models/get";
+import type * as users_get from "../users/get";
+import type * as users_post from "../users/post";
 import type * as users from "../users";
 
 /**
@@ -26,7 +29,10 @@ import type * as users from "../users";
  * ```
  */
 declare const fullApi: ApiFromModules<{
-  models: typeof models;
+  "models/delete": typeof models_delete;
+  "models/get": typeof models_get;
+  "users/get": typeof users_get;
+  "users/post": typeof users_post;
   users: typeof users;
 }>;
 export declare const api: FilterApi<

@@ -1,7 +1,7 @@
 import { generateId } from "@/utils/generateId";
 import { useEffect, useState } from "react"
 
-export const useComponentId = () => {
+export const useId = () => {
     const [id, setId] = useState<Maybe<string>>(null);
 
     useEffect(() => {

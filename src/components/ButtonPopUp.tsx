@@ -1,7 +1,5 @@
-import { useComponentId } from '@/hooks/useComponentId';
-import { usePopUpStore } from '@/store/popUpStore';
+import { usePopupController } from '@/hooks/usePopUpController';
 import { AnimatePresence, motion } from 'framer-motion';
-import { useEffect, useState } from 'react';
 import { twMerge } from 'tailwind-merge';
 
 export interface ButtonPopUpItem {
@@ -23,22 +21,7 @@ const ButtonPopUp: React.FC<ButtonPopUpProps> = ({
 	className,
 	...props
 }) => {
-	const [isOpened, setIsOpened] = useState<boolean>(false);
-	const pushPopUp = usePopUpStore((state) => state.push);
-	const removePopUp = usePopUpStore((state) => state.remove);
-	const componentId = useComponentId();
-
-	useEffect(() => {
-		if (!componentId) return;
-
-		if (isOpened) {
-			pushPopUp(componentId, () => setIsOpened(false));
-		} else {
-			removePopUp(componentId);
-		}
-	}, [isOpened, componentId]);
-
-	const toggleOpen = () => setIsOpened((isOpened) => !isOpened);
+	const { isOpened, togglePopup, popupId } = usePopupController();
 
 	return (
 		<div
@@ -48,9 +31,8 @@ const ButtonPopUp: React.FC<ButtonPopUpProps> = ({
 			<button
 				className={className}
 				onClick={(e) => {
-					e.nativeEvent.stopImmediatePropagation();
 					e.stopPropagation();
-					toggleOpen();
+					togglePopup();
 					onClick && onClick(e);
 				}}
 				{...props}
@@ -59,10 +41,9 @@ const ButtonPopUp: React.FC<ButtonPopUpProps> = ({
 			</button>
 
 			<AnimatePresence>
-				{(isOpened && componentId) ? (
-					<ButtonPopUpMenu items={items} componentId={componentId} />
+				{(isOpened && popupId) ? (
+					<ButtonPopUpMenu items={items} componentId={popupId} />
 				) : null}
-				
 			</AnimatePresence>
 		</div>
 	);
@@ -84,17 +65,17 @@ const ButtonPopUpMenu: React.FC<ButtonPopUpMenuProps> = ({ items, componentId })
 
 			
 			className={twMerge(
-				'absolute top-0 left-full py-3 bg-base-200 rounded-sm w-40'
+				'absolute top-0 left-full py-3 bg-base-200 rounded-sm w-40 z-[1000]'
 			)}
 		>
 			<ul className=''>
 				{items?.map((item, index) => (
 					<li
-						className=''
+						className=' duration-150 hover:bg-white hover:bg-opacity-[8%] active:bg-opacity-[15%]'
 						key={index}
 					>
 						<button
-							className='w-full flex items-center px-3 py-2 justify-between duration-150 gap-5 hover:bg-white hover:bg-opacity-[8%] active:bg-opacity-[15%]'
+							className={twMerge('w-full flex items-center px-3 py-2 justify-between gap-5', item.className)}
 							onClick={() => {
 								item.onClick && item.onClick();
 							}}

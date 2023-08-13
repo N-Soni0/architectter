@@ -1,4 +1,4 @@
-import { query } from './_generated/server';
+import { mutation, query } from './_generated/server';
 import { v } from 'convex/values';
 
 const optionsSchema = v.optional(v.object(
@@ -20,5 +20,14 @@ export const getUserModels = query({
 			.collect();
 
 		return models;
+	},
+});
+
+export const deleteModel = mutation({
+	args: {
+		id: v.id('models')
+	},
+	handler: async (ctx, args) => {
+		await ctx.db.delete(args.id)
 	},
 });

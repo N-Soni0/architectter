@@ -1,10 +1,11 @@
 import { useNavigate } from 'react-router-dom';
-import { FiEdit, FiLock, FiMoreVertical } from 'react-icons/fi';
-import { MdPublic } from 'react-icons/md';
+import { FiEdit, FiMoreVertical } from 'react-icons/fi';
 import ButtonPopUp, { ButtonPopUpItem } from '@/components/ButtonPopUp';
-import DeleteModal from './DeleteModal';
 import { usePopupController } from '@/hooks/usePopUpController';
 import { AiOutlineDelete } from 'react-icons/ai';
+import DeleteConfirmModal from './DeleteConfirmModal';
+import ModelListItemTitle from './ModelListItemTitle';
+import ListItem from './ListItem';
 
 interface ModelsListItemProps {
 	model: ModelDoc;
@@ -34,7 +35,7 @@ const ModelsListItem: React.FC<ModelsListItemProps> = ({ model }) => {
 
 	return (
 		<>
-			<li className='card bg-base-200 shadow-md flex-shrink-0 w-52'>
+			<ListItem className='card bg-base-200 shadow-md flex-shrink-0 w-52'>
 				<div
 					className='card-body !justify-end static z-0 p-2 cursor-pointer'
 					onClick={() => {
@@ -49,35 +50,19 @@ const ModelsListItem: React.FC<ModelsListItemProps> = ({ model }) => {
 						>
 							<FiMoreVertical className='' />
 						</ButtonPopUp>
-
-						
 					</div>
 
-					<h2 className='card-title flex items-center'>
-						<span className='mr-2'>{model.name}</span>
+					<ModelListItemTitle isPrivate={model.private}>{model.name}</ModelListItemTitle>
 
-						{model.private ? (
-							<FiLock
-								size='1rem'
-								className='opacity-50'
-							/>
-						) : (
-							<MdPublic
-								size='1.1rem'
-								className='opacity-50'
-							/>
-						)}
-					</h2>
-
-					<p className='text-xs opacity-30 '>{model.address}</p>
+					<p className='text-xs opacity-30'>{model.address}</p>
 				</div>
 
-				<DeleteModal
+				<DeleteConfirmModal
 					model={model}
 					close={deleteModalController.close}
 					isOpened={deleteModalController.isOpened}
 				/>
-			</li>
+			</ListItem>
 		</>
 	);
 };

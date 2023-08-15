@@ -1,5 +1,5 @@
 import { AiOutlinePlus } from 'react-icons/ai';
-import ListItem from './ListItem';
+import ListItem from '../UI/ListItem';
 
 const CreateModelButton = () => {
 	return (

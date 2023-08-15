@@ -5,15 +5,15 @@ import EmptyListItem from "./components/EmptyListItem";
 
 interface ModelsListProps {
     models: ModelDoc[];
+    onModelClick?: (model: ModelDoc) => void;
     isLoading?: boolean;
 }
 
 
-const ModelsList: React.FC<ModelsListProps> = ({ models, isLoading }) => {
-
+const ModelsList: React.FC<ModelsListProps> = ({ models, isLoading, onModelClick }) => {
     if (isLoading) {
             return (
-                <ul className="flex gap-4 mt-2 overflow-auto">
+                <ul className="flex gap-4 mt-2 overflow-auto h-[7rem]">
                     {Array.from({ length: 5 }).map((_, index) => (
                         <SkeletonModelListItem key={index} />
                     ))}
@@ -25,11 +25,9 @@ const ModelsList: React.FC<ModelsListProps> = ({ models, isLoading }) => {
         <ul className="flex gap-4 mt-2 overflow-auto h-[7rem]">
             <CreateModelButton />
 
-            {}
-
             {models.length ? (
                 models.map((model) => (
-                    <ModelsListItem model={model} key={model._id} />
+                    <ModelsListItem model={model} onClick={onModelClick} key={model._id} />
                 ))
             ) : (
                 <EmptyListItem />

@@ -1,4 +1,4 @@
-import ListItem from "./ListItem"
+import ListItem from "../UI/ListItem"
 
 const EmptyListItem = () => {
   return (

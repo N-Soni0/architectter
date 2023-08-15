@@ -3,17 +3,19 @@ import { useModelStore } from "@/store/modelStore/useModelStore";
 import { useEffect } from "react";
 import { ModelsList } from "@/modules/ModelsList";
 import { useAsyncCall } from "@/hooks/useAsyncCall";
+import { useNavigate } from "react-router-dom";
 
 const MainPage = () => {
   const user = useUserStore(state => state.user);
   const models = useModelStore(state => state.models);
   const getUserModels = useModelStore(state => state.getUserModels);
-  const { run, isLoading } = useAsyncCall(getUserModels);
+  const navigate = useNavigate();
+  const { run: getModels, isLoading } = useAsyncCall(getUserModels);
 
   useEffect(() => {
     if (!user?._id) return;
 
-    run(user._id);
+    getModels(user._id);
   }, [user?._id, getUserModels])
 
   return (
@@ -24,7 +26,13 @@ const MainPage = () => {
           models
         </h2>
 
-        <ModelsList models={models} isLoading={isLoading} />
+        <ModelsList 
+          models={models} 
+          isLoading={isLoading} 
+          onModelClick={(model) => {
+            navigate(`/model/${model._id}`)
+          }}
+        />
       </section>
     </div>
   )

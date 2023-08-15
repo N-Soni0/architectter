@@ -1,19 +1,18 @@
-import { useNavigate } from 'react-router-dom';
 import { FiEdit, FiMoreVertical } from 'react-icons/fi';
 import ButtonPopUp, { ButtonPopUpItem } from '@/components/ButtonPopUp';
 import { usePopupController } from '@/hooks/usePopUpController';
 import { AiOutlineDelete } from 'react-icons/ai';
 import DeleteConfirmModal from './DeleteConfirmModal';
 import ModelListItemTitle from './ModelListItemTitle';
-import ListItem from './ListItem';
+import ListItem from '../UI/ListItem';
 
 interface ModelsListItemProps {
 	model: ModelDoc;
+	onClick?: (model: ModelDoc) => void;
 }
 
-const ModelsListItem: React.FC<ModelsListItemProps> = ({ model }) => {
+const ModelsListItem: React.FC<ModelsListItemProps> = ({ model, onClick }) => {
     const deleteModalController = usePopupController();
-	const navigate = useNavigate();
 
 	const popUpItems: ButtonPopUpItem[] = [
         {
@@ -35,14 +34,14 @@ const ModelsListItem: React.FC<ModelsListItemProps> = ({ model }) => {
 
 	return (
 		<>
-			<ListItem className='card bg-base-200 shadow-md flex-shrink-0 w-52'>
+			<ListItem className='card bg-base-200 shadow-md flex-shrink-0 w-52 hover:bg-base-300'>
 				<div
 					className='card-body !justify-end static z-0 p-2 cursor-pointer'
 					onClick={() => {
-						navigate(`/models/${model._id}`);
+						onClick && onClick(model)
 					}}
 				>
-					<div className='card-actions  w-fit ml-auto justify-end cursor-auto z-40'>
+					<div className='card-actions w-fit ml-auto justify-end cursor-auto z-40'>
 						<ButtonPopUp
 							className='btn btn-square btn-sm btn-ghost'
 							items={popUpItems}

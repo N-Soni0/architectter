@@ -1,10 +1,12 @@
 import { twMerge } from 'tailwind-merge';
 
+interface IStep {
+    title: string;
+    className?: string;
+}
+
 interface StepBarProps {
-	steps: {
-		title: string;
-		className?: string;
-	}[];
+	steps: IStep[];
 	className?: string;
 	currentStep: number;
 }

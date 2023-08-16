@@ -2,7 +2,7 @@ import { useUserStore } from "@/store/userStore"
 import { useModelStore } from "@/store/modelStore/useModelStore";
 import { useEffect } from "react";
 import { ModelsList } from "@/modules/ModelsList";
-import { useAsyncCall } from "@/hooks/useAsyncCall";
+import { usePromise } from "@/hooks/usePromise";
 import { useNavigate } from "react-router-dom";
 
 const MainPage = () => {
@@ -10,7 +10,7 @@ const MainPage = () => {
   const models = useModelStore(state => state.models);
   const getUserModels = useModelStore(state => state.getUserModels);
   const navigate = useNavigate();
-  const { run: getModels, isLoading } = useAsyncCall(getUserModels);
+  const { run: getModels, isLoading } = usePromise(getUserModels);
 
   useEffect(() => {
     if (!user?._id) return;

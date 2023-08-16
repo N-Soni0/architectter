@@ -1,5 +1,5 @@
 import Modal from '@/UI/Modal';
-import { useAsyncCall } from '@/hooks/useAsyncCall';
+import { usePromise } from '@/hooks/usePromise';
 import { useModelStore } from '@/store/modelStore/useModelStore';
 
 interface DeleteConfirmModalProps {
@@ -14,7 +14,7 @@ const DeleteConfirmModal: React.FC<DeleteConfirmModalProps> = ({
 	model,
 }) => {
 	const deleteModel = useModelStore((state) => state.deleteModel);
-	const { isLoading, run: deleteModelCallback } = useAsyncCall(deleteModel);
+	const { isLoading, run: deleteModelCallback } = usePromise(deleteModel);
 
 	const handleDeleteModel = async () => {
 		await deleteModelCallback(model._id);

@@ -1,6 +1,6 @@
 import { useCallback, useState } from "react"
 
-export const useAsyncCall = <TArgs, R>(asyncFunction: (...args: TArgs[]) => Promise<R>) => {
+export const usePromise = <TArgs, R>(asyncFunction: (...args: TArgs[]) => Promise<R>) => {
     const [result, setResult] = useState<Maybe<R>>(null);
     const [error, setError] = useState<unknown>(null);
     const [isLoading, setIsLoading] = useState<boolean>(false);

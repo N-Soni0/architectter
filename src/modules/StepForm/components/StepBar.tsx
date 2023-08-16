@@ -1,14 +1,13 @@
 import { twMerge } from 'tailwind-merge';
 
 interface IStep {
-    title: string;
-    className?: string;
+    name?: string;
 }
 
 interface StepBarProps {
 	steps: IStep[];
 	className?: string;
-	currentStep: number;
+	currentStep: Maybe<number>;
 }
 
 const StepBar: React.FC<StepBarProps> = ({ currentStep, steps, className }) => {
@@ -16,14 +15,14 @@ const StepBar: React.FC<StepBarProps> = ({ currentStep, steps, className }) => {
 		<ul className={twMerge('steps', className)}>
 			{steps.map((step, index) => (
 				<li
-					key={step.title}
+					key={index}
 					className={twMerge(
 						'step',
-						currentStep > index ? 'step-primary' : '',
+						currentStep && currentStep > index ? 'step-primary' : '',
 						className
 					)}
 				>
-					{step.title}
+					{step.name}
 				</li>
 			))}
 		</ul>

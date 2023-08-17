@@ -7,6 +7,11 @@ interface StepProps extends React.FormHTMLAttributes<HTMLFormElement> {
     isValid: boolean;
 }
 
+/**
+ * Form component that handles `loading` of async submit event.
+ * 
+ * @param isValid - Disables `next` button  
+ */
 const Step: React.FC<StepProps> = ({ isValid, children, onSubmit, className, ...props }) => {
 	const stepController = useStepControllerContext();
 	const [isLoading, setIsLoading] = useState(false);

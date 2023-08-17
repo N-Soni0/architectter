@@ -22,9 +22,9 @@ const Step: React.FC<StepProps> = ({ isValid, children, onSubmit, className, ...
 
 				if (!onSubmit) return;
 
-				setIsLoading(false);
-				await onSubmit(e);
 				setIsLoading(true);
+				await onSubmit(e);
+				setIsLoading(false);
 
 				stepController.next();
 			}}

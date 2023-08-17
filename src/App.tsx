@@ -28,8 +28,10 @@ function App() {
         <AppBar />
       </header>
 
-      <main className="flex-1 flex">
-        <Router />
+      <main className="flex-1 min-h-full flex">
+        <div className="min-h-full w-full">
+          <Router />
+        </div>
       </main>
     </div>
   );

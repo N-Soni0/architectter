@@ -28,10 +28,7 @@ const StepButtons: React.FC<StepButtonsProps> = ({
 			</button>
 
 			<button
-				disabled={!isValid ||
-					!stepController?.currentStep ||
-					stepController?.currentStep >= stepController?.number
-				}
+				disabled={!isValid || isLoading}
 				className='btn btn-primary'
 			>
 				<GrFormNext />

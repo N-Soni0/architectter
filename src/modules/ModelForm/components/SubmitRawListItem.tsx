@@ -14,7 +14,7 @@ const SubmitRawListItem: React.FC<SubmitRawListItemProps> = ({
 		<SubmitListItem className='flex items-center justify-between'>
 			<h4>{title}</h4>
 
-			<p>{value}</p>
+			<p className='text-right w-4/5'>{value}</p>
 		</SubmitListItem>
 	);
 };

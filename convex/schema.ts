@@ -5,7 +5,7 @@ export default defineSchema(
     {
         models: defineTable({
             name: v.string(),
-            address: v.optional(v.string()),
+            address: v.string(),
             private: v.boolean(),
             creator: v.id('users')  
         }),

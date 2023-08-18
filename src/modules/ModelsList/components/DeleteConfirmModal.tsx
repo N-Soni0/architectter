@@ -1,6 +1,8 @@
+import Button from '@/UI/Button';
 import Modal from '@/UI/Modal';
 import { usePromise } from '@/hooks/usePromise';
 import { useModelStore } from '@/store/modelStore/useModelStore';
+
 
 interface DeleteConfirmModalProps {
 	model: ModelDoc;
@@ -23,7 +25,7 @@ const DeleteConfirmModal: React.FC<DeleteConfirmModalProps> = ({
 	};
 
 	return (
-		<Modal isOpened={isOpened} close={close}>
+		<Modal isOpened={isOpened} close={close} disabled={isLoading}>
 			<h3 className='font-bold text-lg'>
 				Are you sure you want to delete{' '}
 				<span className='text-accent text-'>{model.name}</span> model?
@@ -33,20 +35,20 @@ const DeleteConfirmModal: React.FC<DeleteConfirmModalProps> = ({
 			</p>
 
 			<div className='w-full flex justify-center items-center gap-5'>
-				<button
-					className={'btn btn-error'}
-					disabled={isLoading}
+				<Button
+					isLoading={isLoading}
+					className={'btn-error'}
 					onClick={handleDeleteModel}
 				>
 					Delete
-				</button>
-				<button
-					className={`btn btn-primary`}
+				</Button>
+				<Button
 					disabled={isLoading}
+					className={`btn-primary`}
 					onClick={close}
 				>
 					Cancel
-				</button>
+				</Button>
 			</div>
 		</Modal>
 	);

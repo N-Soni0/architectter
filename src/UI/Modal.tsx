@@ -3,9 +3,10 @@ interface ModalProps {
     isOpened: boolean;
 	close: () => void;
     children?: React.ReactNode;
+	disabled?: boolean;
 }
 
-const Modal: React.FC<ModalProps> = ({ isOpened, close, children }) => {
+const Modal: React.FC<ModalProps> = ({ isOpened, close, children, disabled }) => {
 
 	return (
 		<dialog
@@ -25,7 +26,7 @@ const Modal: React.FC<ModalProps> = ({ isOpened, close, children }) => {
 				method='dialog'
 				className='modal-backdrop'
 			>
-				<button onClick={close}>close</button>
+				<button disabled={disabled} onClick={close}>close</button>
 			</form>
 		</dialog>
 	);

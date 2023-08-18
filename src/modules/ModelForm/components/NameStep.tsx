@@ -1,17 +1,17 @@
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { ModelSchemaType, modelSchema } from '../schemas/modelSchema';
 import TextInput from '@/UI/TextInput';
 import Checkbox from '@/UI/Checkbox';
-import { useFormStore } from '../store/formStore';
 import { Step } from '@/components/StepForm';
+import { useFormStore } from '../store/formStore';
+import { ModelSchemaType, modelSchema } from '../schemas/modelSchema';
 
 const NameStep = () => {
 	const fields = useFormStore((state) => state.fields);
 	const saveFields = useFormStore((state) => state.saveFields);
 
 	const {
-		register,
+		register,	
 		handleSubmit,
 		formState: { isValid, errors },
 	} = useForm<ModelSchemaType>({

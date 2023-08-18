@@ -1,24 +1,14 @@
-import NameStep from './components/NameStep'
-import SubmitStep from './components/SubmitStep'
-import { useEffect } from 'react';
-import { useFormStore } from './store/formStore';
-import { StepForm } from '@/components/StepForm';
+
+import ModelForm from '@/modules/ModelForm/ModelForm';
+import { useNavigate } from 'react-router-dom';
 
 const CreateModelPage = () => {
-    const resetFields = useFormStore(state => state.reset)
-
-    useEffect(() => {
-        return () => {
-            resetFields()
-        }
-    }, [])
+    const navigate = useNavigate()
 
   return (
     <div className='h-full w-full flex items-center justify-center'>
         <div className='bg-base-200 p-5 rounded-sm'>
-            <StepForm
-                steps={[{element: <NameStep />}, {element: <SubmitStep />}]}
-            /> 
+            <ModelForm onFinishForm={() => navigate('/')} />
         </div>
     </div>
   )

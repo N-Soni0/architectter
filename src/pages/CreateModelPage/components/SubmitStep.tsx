@@ -1,29 +1,44 @@
-import { convex } from '@/main'
-import { Step } from '@/modules/StepForm'
-import { useUserStore } from '@/store/userStore'
-import { api } from '@convex/_generated/api'
+import { convex } from '@/main';
+import { Step } from '@/modules/StepForm';
+import { useUserStore } from '@/store/userStore';
+import { api } from '@convex/_generated/api';
+import { ModelSchemaType } from '../schemas/modelSchema';
+import { useFormStore } from '../store/formStore';
+import { useNavigate } from 'react-router-dom';
 
 const SubmitStep = () => {
-  const userId = useUserStore(state => state.user?._id);
+	const userId = useUserStore((state) => state.user?._id);
+  const fields = useFormStore(state => state.fields)
+  const navigate = useNavigate();
 
-  const createModel = async () => {
-    if (!userId) {
-      return console.error('User not signed in. Unabled to create a model')
-    }
-    convex.mutation(api.models.post.createModel, { address: "Null", creator: userId, name: `My home ${Date.now()}`,private: false})
-  }
+	const createModel = async (modelData: ModelSchemaType) => {
+		if (!userId) {
+			return console.error('User not signed in. Unabled to create a model');
+		}
 
-  return (
-    <Step 
-      isValid={true} 
-      onSubmit={async () => {
-        await createModel()
-      }}
-    >
-        <h2></h2>
-        <div>submit</div>
-    </Step>
-  )
-}
+		await convex.mutation(api.models.post.createModel, {
+			address: modelData.address,
+			creator: userId,
+			name: modelData.name,
+			private: modelData.private,
+		});
+	};
 
-export default SubmitStep
+	return (
+		<Step
+			isValid={true}
+			onSubmit={async () => {
+        if (!fields) return;
+        
+				await createModel(fields);
+
+        navigate('/')
+			}}
+		>
+			<h2></h2>
+			<div>submit</div>
+		</Step>
+	);
+};
+
+export default SubmitStep;

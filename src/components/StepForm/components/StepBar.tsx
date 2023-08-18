@@ -12,7 +12,7 @@ interface StepBarProps {
 
 const StepBar: React.FC<StepBarProps> = ({ currentStep, steps, className }) => {
 	return (
-		<ul className={twMerge('steps', className)}>
+		<ul className={twMerge('steps border-b-2 pb-2 w-full border-b-white border-opacity-30', className)}>
 			{steps.map((step, index) => (
 				<li
 					key={index}

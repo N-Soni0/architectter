@@ -28,7 +28,7 @@ const StepForm: React.FC<StepFormProps> = ({ steps }) => {
 					}))}
 				/>
 
-				<div>
+				<div className='mt-5'>
 					{steps.map((step, index) =>
 						stepController.currentStep &&
 						index === stepController.currentStep - 1 ? (

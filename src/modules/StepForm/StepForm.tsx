@@ -20,7 +20,7 @@ const StepForm: React.FC<StepFormProps> = ({ steps }) => {
 
 	return (
 		<StepControllerProvider stepController={stepController}>
-			<div>
+			<div className='flex flex-col items-center'>
 				<StepBar
 					currentStep={stepController.currentStep}
 					steps={steps.map((step) => ({

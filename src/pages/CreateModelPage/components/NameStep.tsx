@@ -1,10 +1,10 @@
-import { Step } from '@/modules/StepForm';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { ModelSchemaType, modelSchema } from '../schemas/modelSchema';
 import TextInput from '@/UI/TextInput';
 import Checkbox from '@/UI/Checkbox';
 import { useFormStore } from '../store/formStore';
+import { Step } from '@/components/StepForm';
 
 const NameStep = () => {
 	const fields = useFormStore((state) => state.fields);
@@ -27,8 +27,8 @@ const NameStep = () => {
 	return (
 		<Step
 			isValid={isValid}
-			onSubmit={handleSubmit(async (formData) => {
-        saveFields(formData)
+			onSubmit={handleSubmit((formData) => {
+				saveFields(formData);
 			})}
 		>
 			<div className='flex flex-col gap-3'>

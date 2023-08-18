@@ -1,6 +1,6 @@
 import { FiEdit, FiMoreVertical } from 'react-icons/fi';
 import ButtonPopUp, { ButtonPopUpItem } from '@/components/ButtonPopUp';
-import { usePopupController } from '@/hooks/usePopUpController';
+import { usePopupController } from '@/hooks/usePopupController';
 import { AiOutlineDelete } from 'react-icons/ai';
 import DeleteConfirmModal from './DeleteConfirmModal';
 import ModelListItemTitle from './ModelListItemTitle';

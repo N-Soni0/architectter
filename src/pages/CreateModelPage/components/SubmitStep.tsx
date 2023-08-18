@@ -1,10 +1,10 @@
 import { convex } from '@/main';
-import { Step } from '@/modules/StepForm';
 import { useUserStore } from '@/store/userStore';
 import { api } from '@convex/_generated/api';
 import { ModelSchemaType } from '../schemas/modelSchema';
 import { useFormStore } from '../store/formStore';
 import { useNavigate } from 'react-router-dom';
+import { Step } from '@/components/StepForm';
 
 const SubmitStep = () => {
 	const userId = useUserStore((state) => state.user?._id);

@@ -1,4 +1,4 @@
-import { usePopupController } from '@/hooks/usePopUpController';
+import { usePopupController } from '@/hooks/usePopupController';
 import { AnimatePresence, motion } from 'framer-motion';
 import { twMerge } from 'tailwind-merge';
 

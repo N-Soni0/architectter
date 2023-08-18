@@ -12,26 +12,22 @@ const StepButtons: React.FC<StepButtonsProps> = ({
 	stepController,
 	isLoading
 }) => {
-	if (isLoading) {
-		return <div>Loading...</div>;
-	}
-
 	return (
 		<div className='flex gap-5 items-center'>
 			<button
 				type='button'
 				disabled={!stepController?.currentStep || stepController?.currentStep <= 1}
-				className='btn btn-outline'
+				className='btn btn-secondary w-[100px]'
 				onClick={stepController.prev}
 			>
-				<GrFormPrevious />
+				<GrFormPrevious size='1.2rem' color="#fff" />
 			</button>
 
 			<button
 				disabled={!isValid || isLoading}
-				className='btn btn-primary'
+				className='btn btn-primary w-[100px]'
 			>
-				<GrFormNext />
+				<GrFormNext size='1.2rem' />
 			</button>
 		</div>
 	);

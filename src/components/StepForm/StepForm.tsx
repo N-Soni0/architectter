@@ -20,7 +20,19 @@ const StepForm: React.FC<StepFormProps> = ({ steps }) => {
 
 	return (
 		<StepControllerProvider stepController={stepController}>
-			<div className='flex flex-col items-center'>
+			<div
+				tabIndex={0}
+				className='flex flex-col items-center outline-none'
+				onKeyDown={(e) => {
+
+					switch (e.code) {
+						case 'ArrowLeft': 
+							stepController.prev()
+							break;
+					}
+					
+				}}
+			>
 				<StepBar
 					currentStep={stepController.currentStep}
 					steps={steps.map((step) => ({

@@ -9,9 +9,10 @@ export type OnFinishFormCallback = (modelData: ModelSchemaType) => void;
 
 interface ModelFormProps {
 	onFinishForm?: OnFinishFormCallback;
+	initialState?: Maybe<ModelSchemaType>;
 }
 
-const ModelForm: React.FC<ModelFormProps> = ({ onFinishForm }) => {
+const ModelForm: React.FC<ModelFormProps> = ({ onFinishForm, initialState }) => {
 	const resetFields = useFormStore((state) => state.reset);
 
 	useEffect(() => {
@@ -23,7 +24,7 @@ const ModelForm: React.FC<ModelFormProps> = ({ onFinishForm }) => {
 	return (
 		<StepForm
 			steps={[
-				{ element: <NameStep /> },
+				{ element: <NameStep initialState={initialState} /> },
 				{ element: <SubmitStep onSubmit={onFinishForm} /> },
 			]}
 		/>

@@ -5,6 +5,7 @@ import { AiOutlineDelete } from 'react-icons/ai';
 import DeleteConfirmModal from './DeleteConfirmModal';
 import ModelListItemTitle from './ModelListItemTitle';
 import ListItem from '../UI/ListItem';
+import { useNavigate } from 'react-router-dom';
 
 interface ModelsListItemProps {
 	model: ModelDoc;
@@ -13,13 +14,14 @@ interface ModelsListItemProps {
 
 const ModelsListItem: React.FC<ModelsListItemProps> = ({ model, onClick }) => {
     const deleteModalController = usePopupController();
+	const navigate = useNavigate();
 
 	const popUpItems: ButtonPopUpItem[] = [
         {
             text: 'Edit',
             icon: <FiEdit className='' />,
             onClick: () => {
-                console.log('edit');
+				navigate(`/model/${model._id}/edit`)
             },
         },
         {
@@ -45,7 +47,6 @@ const ModelsListItem: React.FC<ModelsListItemProps> = ({ model, onClick }) => {
 						<ButtonPopUp
 							className='btn btn-square btn-sm btn-ghost'
 							items={popUpItems}
-							onClick={() => {}}
 						>
 							<FiMoreVertical className='' />
 						</ButtonPopUp>

@@ -8,7 +8,7 @@ import { ModelSchemaType, modelSchema } from '../schemas/modelSchema';
 import { useEffect } from 'react';
 
 interface NameStepProps {
-	initialState?: ModelSchemaType;
+	initialState?: Maybe<ModelSchemaType>
 }
 
 const NameStep: React.FC<NameStepProps> = ({ initialState }) => {

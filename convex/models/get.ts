@@ -14,3 +14,14 @@ export const getAllUserModels = query({
 		return models;
 	},
 });
+
+export const getModel = query({
+	args: {
+		modelId: v.id('models'),
+	},
+	handler: async (ctx, args) => {
+		const model = await ctx.db.get(args.modelId)
+
+		return model;
+	},
+});

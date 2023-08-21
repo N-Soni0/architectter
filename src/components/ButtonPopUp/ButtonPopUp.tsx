@@ -25,7 +25,7 @@ const ButtonPopUp: React.FC<ButtonPopUpProps> = ({
 
 	return (
 		<div
-			className={'relative'}
+			className={'relative '}
 			onClick={(e) => e.stopPropagation()}
 		>
 			<button
@@ -66,7 +66,7 @@ const ButtonPopUpMenu: React.FC<ButtonPopUpMenuProps> = ({ items, componentId })
 
 			
 			className={twMerge(
-				'absolute top-0 left-full py-3 bg-base-200 rounded-sm w-40 z-[900]'
+				'absolute top-0 left-full py-3 bg-base-300 rounded-sm w-40 z-50'
 			)}
 		>
 			<ul className=''>

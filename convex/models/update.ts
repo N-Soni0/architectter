@@ -15,9 +15,5 @@ export const updateModel = mutation({
 			name: args.name,
 			private: args.private,
 		});
-
-		const editedModel = await ctx.db.get(args.modelId);
-
-		return editedModel;
 	},
 });

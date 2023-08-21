@@ -1,17 +1,20 @@
+import { editModel } from '@/api/models/mutations';
 import { useModel } from '@/hooks/useModel';
 import { ModelForm } from '@/modules/ModelForm';
 import { useUserStore } from '@/store/userStore';
-import { editModel } from './api/editModel';
+import { useMutation } from 'react-query';
 import { useNavigate } from 'react-router-dom';
 
 const EditModelPage = () => {
-	const { model, isLoading } = useModel();
+	const { model } = useModel();
 	const userId = useUserStore((state) => state.user?._id);
     const navigate = useNavigate();
+	const mutation = useMutation(editModel, {
+		onSuccess: () => {
+			navigate('/')
+		}
+	})
 
-	if (!model && isLoading) {
-		return <div>Loading</div>;
-	}
 
 	return (
 		<div className='h-full w-full flex items-center justify-center'>
@@ -20,9 +23,8 @@ const EditModelPage = () => {
 					initialState={model ? model : null}
 					onFinishForm={async (modelData) => {
 						if (!userId || model?.creator !== userId) return;
-
-                        await editModel(model._id, modelData);
-                        navigate('/')
+						
+						await mutation.mutateAsync({ modelId: model._id, modelData })
 					}}
 				/>
 			</div>

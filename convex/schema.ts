@@ -11,7 +11,7 @@ export default defineSchema(
         }),
 
         floors: defineTable({
-            modelId: v.id('models'),
+            model: v.id('models'),
             height: v.number(),
             shape: v.array(
                 v.union(

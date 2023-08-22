@@ -2,6 +2,7 @@ import { FiEdit } from 'react-icons/fi';
 import { AiOutlineDelete } from 'react-icons/ai';
 import { FloorItemOptions } from '../types';
 import ActionButton from './ActionButton';
+import ListItem from '../UI/ListItem';
 
 
 interface FloorListItemProps {
@@ -18,7 +19,7 @@ const FloorListItem: React.FC<FloorListItemProps> = ({
 	index
 }) => {
 	return (
-		<li className='flex items-center bg-base-200 rounded-sm hover:bg-base-300 duration-150'>
+		<ListItem className='flex items-center bg-base-200 rounded-sm hover:bg-base-300 duration-150'>
 			<div className='bg-base-300 aspect-square w-16 flex items-center justify-center select-none'>
 				<p className='text-lg opacity-75 font-medium'>
 					{index + 1}.
@@ -35,7 +36,7 @@ const FloorListItem: React.FC<FloorListItemProps> = ({
 					{itemOptions.delete && <ActionButton onClick={() => {}} icon={<AiOutlineDelete className="text-error" size='1.1rem' />} />}
 				</div>
 			</button>
-		</li>
+		</ListItem>
 	);
 };
 

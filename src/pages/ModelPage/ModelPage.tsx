@@ -3,13 +3,14 @@ import { useModelFloors } from '@/hooks/useModelFloors';
 import { useTargetModel } from '@/hooks/useTargetModel';
 import { FloorsList } from '@/modules/FloorsList';
 import { Id } from '@convex/_generated/dataModel';
-import { useNavigate, useParams } from 'react-router-dom';
+import { AiOutlinePlus } from 'react-icons/ai';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 
 const ModelPage = () => {
 	const { modelId } = useParams();
 	const { data: floors } = useModelFloors(modelId as Id<'models'>);
 	const { data: model, isLoading } = useTargetModel(modelId as Id<'models'>);
-    const navigate = useNavigate();
+	const navigate = useNavigate();
 
 	return (
 		<div className='container h-full py-12 '>
@@ -33,8 +34,23 @@ const ModelPage = () => {
 				</div>
 
 				<div className='flex-1'>
+					<div className='bg-base-200 mb-3 flex justify-between items-center p-3'>
+						<div></div>
+
+						<Link
+							to={`/model/${model?._id}/floor/create`}
+							className='btn btn-ghost btn-square'
+						>
+							<AiOutlinePlus
+								className='text-accent'
+								size='2rem'
+							/>
+						</Link>
+					</div>
 					<FloorsList
-                        onItemClick={(floor) => navigate(`/model/${floor.model}/floor/${floor._id}`)}
+						onItemClick={(floor) =>
+							navigate(`/model/${floor.model}/floor/${floor._id}`)
+						}
 						floors={floors ?? []}
 						isLoading={isLoading}
 						itemOptions={{ delete: true, edit: true }}

@@ -1,9 +1,11 @@
+import { twMerge } from 'tailwind-merge';
 import ListItem from './UI/ListItem';
 import FloorListItem from './components/FloorListItem';
 import ListItemSkeleton from './components/ListItemSkeleton';
 import { FloorItemOptions } from './types';
 
 interface FloorsListProps {
+	className?: string;
 	floors: FloorDoc[];
 	onItemClick?: (floor: FloorDoc) => void;
 	isLoading?: boolean;
@@ -12,6 +14,7 @@ interface FloorsListProps {
 
 const FloorsList: React.FC<FloorsListProps> = ({
 	floors,
+	className,
 	onItemClick,
 	itemOptions,
 	isLoading,
@@ -27,7 +30,7 @@ const FloorsList: React.FC<FloorsListProps> = ({
 	}
 
 	return (
-		<ul className='h-full gap-3 flex flex-col'>
+		<ul className={twMerge('h-full gap-3 flex flex-col', className)}>
 			{floors.length === 0 && (
 				<ListItem className='hover:bg-base-200 flex items-center justify-center text-lg text-opacity-20 text-white'>
 					No floors created yet

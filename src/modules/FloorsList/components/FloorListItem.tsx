@@ -29,8 +29,8 @@ const FloorListItem: React.FC<FloorListItemProps> = ({
 					{index + 1}.
 				</p>
 			</div>
-			<button
-				className='flex w-full items-center p-3'
+			<div
+				className='flex w-full items-center p-3 cursor-pointer'
 				onClick={() => onClick && onClick(floor)}
 			>
 				<h4 className='flex-1 text-left text-accent'>Floor name</h4>
@@ -39,7 +39,7 @@ const FloorListItem: React.FC<FloorListItemProps> = ({
 					{itemOptions.edit && <ActionButton onClick={() => { }} icon={<FiEdit size='1.1rem' />} />}
 					{itemOptions.delete && <ActionButton onClick={() => { deletePopUpController.open() }} icon={<AiOutlineDelete className="text-error" size='1.1rem' />} />}
 				</div>
-			</button>
+			</div>
 
 			<DeleteFloorModal close={deletePopUpController.close} floor={floor} isOpened={deletePopUpController.isOpened} />
 		</ListItem>

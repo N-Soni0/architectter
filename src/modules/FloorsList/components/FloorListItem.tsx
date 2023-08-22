@@ -3,6 +3,8 @@ import { AiOutlineDelete } from 'react-icons/ai';
 import { FloorItemOptions } from '../types';
 import ActionButton from './ActionButton';
 import ListItem from '../UI/ListItem';
+import { usePopupController } from '@/hooks/usePopupController';
+import DeleteFloorModal from './DeleteFloorModal';
 
 
 interface FloorListItemProps {
@@ -18,6 +20,8 @@ const FloorListItem: React.FC<FloorListItemProps> = ({
 	itemOptions,
 	index
 }) => {
+	const deletePopUpController = usePopupController()
+
 	return (
 		<ListItem className='flex items-center bg-base-200 rounded-sm hover:bg-base-300 duration-150'>
 			<div className='bg-base-300 aspect-square w-16 flex items-center justify-center select-none'>
@@ -32,10 +36,12 @@ const FloorListItem: React.FC<FloorListItemProps> = ({
 				<h4 className='flex-1 text-left text-accent'>Floor name</h4>
 
 				<div className='flex gap-2'>
-					{itemOptions.edit && <ActionButton onClick={() => {}} icon={<FiEdit size='1.1rem' />} />}
-					{itemOptions.delete && <ActionButton onClick={() => {}} icon={<AiOutlineDelete className="text-error" size='1.1rem' />} />}
+					{itemOptions.edit && <ActionButton onClick={() => { }} icon={<FiEdit size='1.1rem' />} />}
+					{itemOptions.delete && <ActionButton onClick={() => { deletePopUpController.open() }} icon={<AiOutlineDelete className="text-error" size='1.1rem' />} />}
 				</div>
 			</button>
+
+			<DeleteFloorModal close={deletePopUpController.close} floor={floor} isOpened={deletePopUpController.isOpened} />
 		</ListItem>
 	);
 };

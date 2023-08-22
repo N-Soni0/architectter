@@ -1,7 +1,10 @@
 import { CreateModelPage } from '@/pages/CreateModelPage'
+import { CreateFloorPage } from '@/pages/CreateFloorPage'
+import { EditFloorPage } from '@/pages/EditFloorPage'
 import { EditModelPage } from '@/pages/EditModelPage'
 import { MainPage } from '@/pages/MainPage'
 import { ModelPage } from '@/pages/ModelPage'
+import { ViewFloorPage } from '@/pages/ViewFloorPage'
 import { Route, Routes } from 'react-router-dom'
 
 const Router = () => {
@@ -11,6 +14,10 @@ const Router = () => {
       <Route path='model/create/' element={<CreateModelPage />} />
       <Route path='model/:modelId/edit/' element={<EditModelPage />} />
       <Route path='model/:modelId/' element={<ModelPage />} />
+
+      <Route path='model/:modelId/floor/:floorId/' element={<ViewFloorPage />} />
+      <Route path='model/:modelId/floor/create' element={<CreateFloorPage />} />
+      <Route path='model/:modelId/floor/:floorId/edit' element={<EditFloorPage />} />
     </Routes>
   )
 }

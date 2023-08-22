@@ -5,6 +5,7 @@ import ActionButton from './ActionButton';
 import ListItem from '../UI/ListItem';
 import { usePopupController } from '@/hooks/usePopupController';
 import DeleteFloorModal from './DeleteFloorModal';
+import { useNavigate } from 'react-router-dom';
 
 
 interface FloorListItemProps {
@@ -21,6 +22,7 @@ const FloorListItem: React.FC<FloorListItemProps> = ({
 	index
 }) => {
 	const deletePopUpController = usePopupController()
+	const navigate = useNavigate();
 
 	return (
 		<ListItem className='flex items-center bg-base-200 rounded-sm hover:bg-base-300 duration-150'>
@@ -36,7 +38,7 @@ const FloorListItem: React.FC<FloorListItemProps> = ({
 				<h4 className='flex-1 text-left text-accent'>Floor name</h4>
 
 				<div className='flex gap-2'>
-					{itemOptions.edit && <ActionButton onClick={() => { }} icon={<FiEdit size='1.1rem' />} />}
+					{itemOptions.edit && <ActionButton onClick={() => { navigate(`/model/${floor.model}/floor/${floor._id}/edit`) }} icon={<FiEdit size='1.1rem' />} />}
 					{itemOptions.delete && <ActionButton onClick={() => { deletePopUpController.open() }} icon={<AiOutlineDelete className="text-error" size='1.1rem' />} />}
 				</div>
 			</div>

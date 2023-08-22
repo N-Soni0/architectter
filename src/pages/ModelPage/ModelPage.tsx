@@ -3,12 +3,13 @@ import { useModelFloors } from '@/hooks/useModelFloors';
 import { useTargetModel } from '@/hooks/useTargetModel';
 import { FloorsList } from '@/modules/FloorsList';
 import { Id } from '@convex/_generated/dataModel';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
 const ModelPage = () => {
 	const { modelId } = useParams();
 	const { data: floors } = useModelFloors(modelId as Id<'models'>);
 	const { data: model, isLoading } = useTargetModel(modelId as Id<'models'>);
+    const navigate = useNavigate();
 
 	return (
 		<div className='container h-full py-12 '>
@@ -31,9 +32,9 @@ const ModelPage = () => {
 					</div>
 				</div>
 
-				<div className=''>
+				<div className='flex-1'>
 					<FloorsList
-						className=''
+                        onItemClick={(floor) => navigate(`/model/${floor.model}/floor/${floor._id}`)}
 						floors={floors ?? []}
 						isLoading={isLoading}
 						itemOptions={{ delete: true, edit: true }}

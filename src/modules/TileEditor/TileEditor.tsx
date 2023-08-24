@@ -18,7 +18,6 @@ interface FloorTileEditorProps {
 
 const FloorTileEditor: React.FC<FloorTileEditorProps> = ({ helperShapes, initialState, onChange, className, disabled }) => {
   const initShape = useShapeStore(state => state.init) 
-  const updateHelperShapes = useShapeStore(state => state.updateHelperShapes) 
   const tiles = useShapeStore(state => state.shape.tiles) 
   const disableTools = useToolsStore(state => state.disable);
   const resetTools = useToolsStore(state => state.reset);
@@ -32,10 +31,6 @@ const FloorTileEditor: React.FC<FloorTileEditorProps> = ({ helperShapes, initial
   useEffect(() => {
     onChange && onChange(tiles)
   }, [tiles])
-
-  useEffect(() => {
-    updateHelperShapes(helperShapes ?? []);
-  }, [helperShapes])
 
   useEffect(() => {
     initShape(

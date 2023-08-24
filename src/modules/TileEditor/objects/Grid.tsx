@@ -1,13 +1,13 @@
-import { Grid } from '@react-three/drei';
+import { Grid as ThreeGrid } from '@react-three/drei';
 import { ThreeEvent } from '@react-three/fiber';
 
-interface EditGridProps {
+interface Props {
 	size: number;
 	onPointerMove?: (coordinates: Coordinates<2>) => void;
 	onClick?: (coordinates: Coordinates<2>) => void;
 }
 
-const EditGrid: React.FC<EditGridProps> = ({ size, onClick, onPointerMove }) => {
+const Grid: React.FC<Props> = ({ size, onClick, onPointerMove }) => {
 	const parseTileCoordinates = (e: ThreeEvent<MouseEvent>): Coordinates<2> => {
         const x = Math.trunc(e.point.x) + 1;
         const y = Math.trunc(e.point.y) + 1;
@@ -17,7 +17,7 @@ const EditGrid: React.FC<EditGridProps> = ({ size, onClick, onPointerMove }) => 
 
 	return (
 		<>
-			<Grid
+			<ThreeGrid
 				sectionSize={1}
 				fadeDistance={2000}
 				position={[size / 2, size / 2, 0]}
@@ -40,4 +40,4 @@ const EditGrid: React.FC<EditGridProps> = ({ size, onClick, onPointerMove }) => 
 	);
 };
 
-export default EditGrid;
+export default Grid;

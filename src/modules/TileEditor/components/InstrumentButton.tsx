@@ -13,7 +13,7 @@ interface InstrumentButtonProps {
 const InstrumentButton: React.FC<InstrumentButtonProps> = ({
 	icon,
 	label,
-	onClick,
+
 	tool,
 	disabled
 }) => {
@@ -38,8 +38,8 @@ const InstrumentButton: React.FC<InstrumentButtonProps> = ({
 				}
 			}}
 			className={`
-                btn
-                ${isSelected ? 'btn-active btn-ghost' : ''} 
+                btn 
+                ${isSelected ? 'btn-active' : ''} 
                 flex flex-col items-center
 				h-fit p-2
             `}

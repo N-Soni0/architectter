@@ -1,6 +1,6 @@
 import React from 'react';
 import { IEditShape } from '../types/editShape';
-import TilesLine from './TilesLine';
+import TilesLine from './TilesStraightLine';
 
 interface HelperShapeProps {
 	shape: IEditShape;

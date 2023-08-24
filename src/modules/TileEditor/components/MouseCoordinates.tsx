@@ -3,7 +3,7 @@ import { useMousePositionStore } from "../store/mousePositionStore";
 interface MouseCoordinatesProps {
 }
 
-const MouseCoordinates: React.FC<MouseCoordinatesProps> = ({ }) => {
+const MouseCoordinates: React.FC<MouseCoordinatesProps> = () => {
     const mousePosition = useMousePositionStore(state => state.position);
 
 	return (

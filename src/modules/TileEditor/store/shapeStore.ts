@@ -1,8 +1,7 @@
 import { create } from "zustand";
 import { persist, createJSONStorage } from 'zustand/middleware'
 import { immer } from "zustand/middleware/immer";
-import { IEditShape } from "../types/editShape";
-import { ITile } from "@/shared/types/tiles";
+import { IEditShape, ITile } from "../types/editShape";
 
  
 interface State {
@@ -11,17 +10,17 @@ interface State {
 }
 
 interface Actions {
+    init: (shape: IEditShape, helperShapes?: IEditShape[]) => void;
+   
     addTile: (newTile: ITile) => void;
     removeTile: (removeTileID: ID) => void;
-    updateHelperShapes: (helperShapes: IEditShape[]) => void;
-    init: (shape: IEditShape, helperShapes?: IEditShape[]) => void;
     clearTiles: () => void;
     moveTile: (tileID: ID, newCoordinates: Coordinates<2>) => void;
 }
 
 export const useShapeStore = create(
     persist(
-        immer<State & Actions>((set, get) => ({
+        immer<State & Actions>((set) => ({
             shape: {
                 tiles: [],
                 color: '#661ae6',
@@ -63,9 +62,6 @@ export const useShapeStore = create(
                 })
             },
 
-            updateHelperShapes: (helperShapes) => {
-                set(store => {store.helperShapes = helperShapes})
-            }
         })),
         {
             name: 'edited-tiles',

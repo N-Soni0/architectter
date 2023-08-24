@@ -1,6 +1,6 @@
 import { IoMdAdd } from "react-icons/io"
 import InstrumentButton from "./InstrumentButton"
-import { FiArrowLeft, FiArrowRight, FiMove } from 'react-icons/fi'
+// import { FiArrowLeft, FiArrowRight, FiMove } from 'react-icons/fi'
 import { MdOutlineDelete } from 'react-icons/md'
 import { Tool } from "../types/tools"
 import ShapeColorList from "./ShapeColorList"

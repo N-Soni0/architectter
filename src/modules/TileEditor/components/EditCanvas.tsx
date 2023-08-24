@@ -8,7 +8,7 @@ interface EditCanvasProps {
     helperShapes?: IEditShape[];
 }
 
-const EditCanvas: React.FC<EditCanvasProps> = ({ disabled }) => {
+const EditCanvas: React.FC<EditCanvasProps> = () => {
   return (
     <Canvas>
         <EditScene />

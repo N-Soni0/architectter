@@ -44,8 +44,8 @@ const Controls: React.FC<ControlsProps> = ({ enablePointerControls = false }) =>
             minDistance={3}
             maxDistance={15}
             touches={{
-                ONE: TOUCH.PAN,
-                TWO: TOUCH.DOLLY_ROTATE
+                ONE: TOUCH.ROTATE,
+                TWO: TOUCH.ROTATE
             }}
         />
     )

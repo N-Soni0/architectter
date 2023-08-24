@@ -1,7 +1,7 @@
 import { Html } from '@react-three/drei';
-import EditGridTile from './EditGridTile';
+import Tile from './Tile';
 import { IEditShape } from '../types/editShape';
-import TilesLine from './TilesLine';
+import TilesLine from './TilesStraightLine';
 import { ITile } from '@/types/tile';
 
 interface ShapeProps {
@@ -13,15 +13,18 @@ const Shape: React.FC<ShapeProps> = ({ shape, onTileClick }) => {
 	return (
 		<group>
             {shape.tiles.map((tile, index) => (
-                <EditGridTile 
+                <Tile 
 					onClick={onTileClick} 
 					key={tile.id} 
 					tile={tile}
 				>
-					<Html as={'div'} className=''>
-						<p className='absolute text-black -translate-x-1/2 -translate-y-1/2 font-bold text-xl pointer-events-none'>{index + 1}</p>
-					</Html>
-				</EditGridTile>
+					<>
+						<Html as={'div'} className=''>
+							<p className='absolute text-black -translate-x-1/2 -translate-y-1/2 font-bold text-xl pointer-events-none'>{index + 1}</p>
+						</Html>
+					</>
+					
+				</Tile>
             ))}
 
             {shape.connect && shape.tiles.map((tile, index, { length: tilesCount }) => {

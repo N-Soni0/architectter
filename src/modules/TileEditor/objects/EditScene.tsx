@@ -1,7 +1,7 @@
 import React from 'react'
 import { useShapeStore } from '../store/shapeStore'
 import Shape from './Shape';
-import EditGrid from './EditGrid';
+import Grid from './Grid';
 import { useToolsStore } from '../store/toolsStore';
 import { Tool } from '../types/tools';
 import { useMousePositionStore } from '../store/mousePositionStore';
@@ -9,6 +9,7 @@ import HelperShape from './HelperShape';
 import { generateUUID } from 'three/src/math/MathUtils.js';
 
 interface EditSceneProps {
+  children?: React.ReactNode
 }
 
 const EditScene: React.FC<EditSceneProps> = () => {
@@ -21,7 +22,7 @@ const EditScene: React.FC<EditSceneProps> = () => {
 
   return (
     <>
-      <EditGrid 
+      <Grid 
         size={100} 
         onClick={(coordinates) => {
           if (selectedTool === Tool.ADD) {

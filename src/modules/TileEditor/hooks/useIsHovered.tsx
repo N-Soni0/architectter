@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 
 export const useIsHovered = (selector: string) => {
     const [isHovered, setIsHovered] = useState(false);

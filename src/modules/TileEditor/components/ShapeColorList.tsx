@@ -1,11 +1,10 @@
-import React from 'react'
 import { useShapeStore } from '../store/shapeStore'
 
 interface ShapeColorListProps {
     
 }
 
-const ShapeColorList = () => {
+const ShapeColorList: React.FC<ShapeColorListProps> = () => {
   const editingShape = useShapeStore(state => state.shape);
   const helperShapes = useShapeStore(state => state.helperShapes);
 
@@ -13,7 +12,7 @@ const ShapeColorList = () => {
   return (
     <ul className='bg-base-200 flex gap-5 px-4 py-2 overflow-auto'>
         {[editingShape, ...helperShapes]
-          .filter(shape => shape.color && shape.connect && shape.tiles.length > 0)
+          .filter(shape => shape.color && shape.connect)
           .map((shape, index) => {
             return <li className='flex items-center gap-x-2 bg-base-300 py-1 px-2 rounded-md' key={index}>
               {/* Color */}

@@ -48,10 +48,10 @@ const FloorTileEditor: React.FC<FloorTileEditorProps> = ({ helperShapes, initial
     }
   }, [])
 
-	return <div className={twMerge(`flex flex-col h-full`, className)}>
+	return <div className={twMerge(`flex flex-col`, className)}>
     <TopBar />
 
-    <div className='bg-base-300 flex-1 relative' id='edit-canvas'>
+    <div className='bg-base-300 relative flex-1' id='edit-canvas'>
       <MouseCoordinates />
       <EditCanvas helperShapes={helperShapes} />
     </div>

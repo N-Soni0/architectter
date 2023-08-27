@@ -1,5 +1,5 @@
+import { ITile } from "@/types/tile";
 import { useShapeStore } from "../store/shapeStore";
-import { ITile } from "../types/editShape";
 
 interface BottomBarProps {
   save?: (tiles: ITile[]) => void;

@@ -11,7 +11,7 @@ interface Actions {
 }
 
 export const useMousePositionStore = create(
-    immer<State & Actions>((set, get) => ({
+    immer<State & Actions>((set) => ({
         position: { x: 0, y : 0},
 
         setPosition: (newPosition) => {

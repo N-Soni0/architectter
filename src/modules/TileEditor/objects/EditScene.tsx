@@ -6,7 +6,6 @@ import { useToolsStore } from '../store/toolsStore';
 import { Tool } from '../types/tools';
 import { useMousePositionStore } from '../store/mousePositionStore';
 import HelperShape from './HelperShape';
-import { generateUUID } from 'three/src/math/MathUtils.js';
 
 interface EditSceneProps {
   children?: React.ReactNode
@@ -26,7 +25,7 @@ const EditScene: React.FC<EditSceneProps> = () => {
         size={100} 
         onClick={(coordinates) => {
           if (selectedTool === Tool.ADD) {
-            addTile({ id: generateUUID(), coordinates })}
+            addTile({ coordinates })}
           }
         } 
         onPointerMove={(coordinates) => setMousePosition(coordinates)} 
@@ -36,7 +35,7 @@ const EditScene: React.FC<EditSceneProps> = () => {
         shape={editingShape}
         onTileClick={(tile) => {
           if (selectedTool === Tool.REMOVE) {
-            removeTile(tile.id)
+            removeTile(tile)
           }
         }}
       />

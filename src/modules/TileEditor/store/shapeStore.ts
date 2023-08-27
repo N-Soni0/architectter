@@ -1,7 +1,9 @@
 import { create } from "zustand";
 import { persist, createJSONStorage } from 'zustand/middleware'
 import { immer } from "zustand/middleware/immer";
-import { IEditShape, ITile } from "../types/editShape";
+import { IEditShape } from "../types/editShape";
+import { getTileId } from "../utils/getTileId";
+import { ITile } from "@/types/tile";
 
  
 interface State {
@@ -13,9 +15,9 @@ interface Actions {
     init: (shape: IEditShape, helperShapes?: IEditShape[]) => void;
    
     addTile: (newTile: ITile) => void;
-    removeTile: (removeTileID: ID) => void;
+    removeTile: (removeTile: ITile) => void;
     clearTiles: () => void;
-    moveTile: (tileID: ID, newCoordinates: Coordinates<2>) => void;
+    moveTile: (tile: ITile, newCoordinates: Coordinates<2>) => void;
 }
 
 export const useShapeStore = create(
@@ -42,7 +44,7 @@ export const useShapeStore = create(
 
             removeTile: (removeTileID) => {
                 set(store => { 
-                    store.shape.tiles = store.shape.tiles.filter(tile => tile.id !== removeTileID) 
+                    store.shape.tiles = store.shape.tiles.filter(tile => getTileId(tile) !== getTileId(removeTileID)) 
                 })
             },
 
@@ -52,9 +54,9 @@ export const useShapeStore = create(
                 })
             },
 
-            moveTile: (tileID, newCoordinates) => {
+            moveTile: (movedTile, newCoordinates) => {
                 set(store => {
-                    const tile = store.shape.tiles.find(tile => tile.id === tileID);
+                    const tile = store.shape.tiles.find(tile => getTileId(tile) === getTileId(movedTile));
 
                     if (tile) {
                         tile.coordinates = newCoordinates

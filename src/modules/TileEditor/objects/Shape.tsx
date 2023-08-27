@@ -3,6 +3,7 @@ import Tile from './Tile';
 import { IEditShape } from '../types/editShape';
 import TilesLine from './TilesStraightLine';
 import { ITile } from '@/types/tile';
+import { getTileId } from '../utils/getTileId';
 
 interface ShapeProps {
 	shape: IEditShape;
@@ -15,7 +16,7 @@ const Shape: React.FC<ShapeProps> = ({ shape, onTileClick }) => {
             {shape.tiles.map((tile, index) => (
                 <Tile 
 					onClick={onTileClick} 
-					key={tile.id} 
+					key={getTileId(tile)} 
 					tile={tile}
 				>
 					<>
@@ -35,7 +36,7 @@ const Shape: React.FC<ShapeProps> = ({ shape, onTileClick }) => {
 
 				return (
 					<TilesLine
-						key={start.id + end.id}
+						key={getTileId(start) + getTileId(end)}
 						showLength={true}
 						startTile={start.coordinates}
 						endTile={end.coordinates}

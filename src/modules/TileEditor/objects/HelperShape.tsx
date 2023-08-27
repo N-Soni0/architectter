@@ -1,6 +1,7 @@
 import React from 'react';
 import { IEditShape } from '../types/editShape';
 import TilesLine from './TilesStraightLine';
+import { getTileId } from '../utils/getTileId';
 
 interface HelperShapeProps {
 	shape: IEditShape;
@@ -18,7 +19,7 @@ const HelperShape: React.FC<HelperShapeProps> = ({ shape }) => {
 
 					return (
 						<TilesLine
-							key={start.id + end.id}
+							key={getTileId(start) + getTileId(end)}
 							transparent
 							opacity={0.3}
 							dashed

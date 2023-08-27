@@ -1,8 +1,4 @@
-
-export interface ITile {
-    id: ID;
-    coordinates: Coordinates<2>;
-}
+import { ITile } from "@/types/tile";
 
 export interface IEditShape {
     tiles: ITile[];

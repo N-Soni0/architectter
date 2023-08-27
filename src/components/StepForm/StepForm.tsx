@@ -2,8 +2,11 @@ import { motion } from 'framer-motion';
 import StepBar from './components/StepBar';
 import StepControllerProvider from './components/StepControllerProvider';
 import { useSteps } from './hooks/useSteps';
+import { twMerge } from 'tailwind-merge';
 
 interface StepFormProps {
+	className?: string;
+
 	steps: {
 		element: React.ReactNode;
 		name?: string;
@@ -54,14 +57,14 @@ const slideVariants = {
  *
  * @param steps - An array of `Step` components
  */
-const StepForm: React.FC<StepFormProps> = ({ steps }) => {
+const StepForm: React.FC<StepFormProps> = ({ steps, className }) => {
 	const stepController = useSteps(steps.length);
 
 	return (
 		<StepControllerProvider stepController={stepController}>
 			<div
 				tabIndex={0}
-				className='flex flex-col items-center outline-none overflow-hidden'
+				className={twMerge('flex flex-col items-center outline-none overflow-hidden w-full h-full', className)}
 				onKeyDown={(e) => {
 					switch (e.code) {
 						case 'ArrowLeft':
@@ -78,7 +81,7 @@ const StepForm: React.FC<StepFormProps> = ({ steps }) => {
 				/>
 
 				<motion.div
-					className={'mt-5'}
+					className={'mt-5 w-full h-full'}
 					key={stepController.currentStep}
 					variants={slideVariants}
 					initial={

@@ -33,7 +33,7 @@ const Step: React.FC<StepProps> = ({ isValid, children, onSubmit, className, ...
 
 				stepController.next();
 			}}
-			className={twMerge('flex flex-col items-center gap-5')}
+			className={twMerge('flex flex-col items-center justify-between gap-5 p-2 w-full h-full')}
 			{...props}
 		>
 			<div className={className}>

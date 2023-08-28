@@ -6,19 +6,20 @@ import { useFormStore } from '../../store/formStore';
 
 const SetPointsStep = () => {
 	const [points, setPoints] = useState<ShapePoint[]>([]);
-	const setPointsStep = useFormStore((state) => state.setPointsStep);
+	const updateFloorForm = useFormStore(state => state.update)
+	const floorFormPoints = useFormStore(state => state.points)
 
   return (
 		<Step
 			className='w-full '
 			onSubmit={() => {
-				setPointsStep.update({ points });
+				updateFloorForm({ points });
 			}}
 			isValid={points.length >= 3}
 		>
 			<TileEditor
 				initialState={{
-					tiles: setPointsStep.data.points.length ? setPointsStep.data.points.map((point) => ({
+					tiles: floorFormPoints?.length ? floorFormPoints.map((point) => ({
 						coordinates: point.coordinates,
 					})) : undefined,
 				}}

@@ -6,9 +6,10 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import { useFormStore } from "../../store/formStore"
 
 const RawDataStep = () => {
-  const rawDataStepStore = useFormStore(state => state.rawDataStep);
+  const height = useFormStore(state => state.height);
+  const udpateFormStore = useFormStore(state => state.update);
   const { register, handleSubmit, formState: { isValid, errors } } = useForm<RawDataSchemaType>({
-    defaultValues: rawDataStepStore.data,
+    defaultValues: { height },
     mode: 'onBlur',
     resolver: zodResolver(rawDataSchema)
   });
@@ -17,7 +18,7 @@ const RawDataStep = () => {
     <Step 
       className="h-full"
       onSubmit={handleSubmit((formData) => {
-        rawDataStepStore.update(formData)
+        udpateFormStore(formData)
       })}
       isValid={isValid} 
     >

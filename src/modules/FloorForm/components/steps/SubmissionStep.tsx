@@ -10,18 +10,19 @@ type Props = {
 
 const SubmissionStep = ({ onSubmit }: Props) => {
 	const { modelId } = useParams();
-	const setPointsStepData = useFormStore((state) => state.setPointsStep.data);
-	const rawStepData = useFormStore((state) => state.rawDataStep.data);
+	const { height, points } = useFormStore();
 
 	return (
 		<Step
 			isValid={true}
 			className='h-[500px] w-4/5 bg-base-200 rounded-sm'
 			onSubmit={async () => {
+				if (!height || !points) return;
+
 				onSubmit &&
 					(await onSubmit({
-						shape: setPointsStepData.points,
-						height: rawStepData.height,
+						shape: points,
+						height: height,
 					}));
 			}}
 		>
@@ -30,9 +31,9 @@ const SubmissionStep = ({ onSubmit }: Props) => {
 					{
 						_id: 'CREATE' as Id<'floors'>,
 						_creationTime: 0,
-						height: rawStepData.height,
 						model: modelId as Id<'models'>,
-						shape: setPointsStepData.points,
+						height: height ?? 0,
+						shape: points ?? [],
 					},
 				]}
 			/>

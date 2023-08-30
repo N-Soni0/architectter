@@ -14,3 +14,14 @@ export const getModelFloors = query({
         return floors;
     }
 })
+
+export const getFloor = query({
+    args: {
+        floorId: v.id("floors")
+    },
+    handler: async (ctx, args) => {
+        const floor = await ctx.db.get(args.floorId)
+
+        return floor;
+    }
+})

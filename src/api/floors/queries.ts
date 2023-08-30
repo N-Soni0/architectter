@@ -8,3 +8,9 @@ export const getModelFloors = async (args: { modelId: Id<'models'> }) => {
 
     return floors;
 }
+
+export const getFloor = async (args: { floorId: Id<'floors'> }) => {
+    const floor = await convex.query(api.floors.queries.getFloor, args);
+
+    return floor;
+}

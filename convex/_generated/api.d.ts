@@ -14,10 +14,15 @@ import type {
   FilterApi,
   FunctionReference,
 } from "convex/server";
+import type * as floors_mutations from "../floors/mutations";
+import type * as floors_queries from "../floors/queries";
 import type * as models_delete from "../models/delete";
 import type * as models_get from "../models/get";
 import type * as models_post from "../models/post";
 import type * as models_update from "../models/update";
+import type * as tables_floors from "../tables/floors";
+import type * as tables_models from "../tables/models";
+import type * as tables_users from "../tables/users";
 import type * as users_get from "../users/get";
 import type * as users_post from "../users/post";
 import type * as users from "../users";
@@ -31,10 +36,15 @@ import type * as users from "../users";
  * ```
  */
 declare const fullApi: ApiFromModules<{
+  "floors/mutations": typeof floors_mutations;
+  "floors/queries": typeof floors_queries;
   "models/delete": typeof models_delete;
   "models/get": typeof models_get;
   "models/post": typeof models_post;
   "models/update": typeof models_update;
+  "tables/floors": typeof tables_floors;
+  "tables/models": typeof tables_models;
+  "tables/users": typeof tables_users;
   "users/get": typeof users_get;
   "users/post": typeof users_post;
   users: typeof users;

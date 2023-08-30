@@ -13,7 +13,12 @@ const TextInput: React.FC<TextInputProps> = ({ error, className, register, label
     <div className='form-control'>
         <label className='mb-2 text-sm'>{label} {required ? <span className='text-accent'>*</span> : ''}</label>
 
-        <input type='text' className={twMerge('input', className)} {...register} {...props} />
+        <input  
+          {...props} 
+          className={twMerge('input', className)} 
+          type='text' 
+          {...register} 
+        />
 
         <label className="label">
             <span className="label-text-alt text-error">{error}</span>

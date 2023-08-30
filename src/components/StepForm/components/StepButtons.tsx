@@ -17,7 +17,7 @@ const StepButtons: React.FC<StepButtonsProps> = ({
 		<div className='flex gap-5 items-center'>
 			<Button
 				type='button'
-				disabled={!stepController?.currentStep || stepController?.currentStep <= 1}
+				disabled={!stepController?.currentStep || stepController?.currentStep <= 1 || isLoading}
 				className='btn btn-secondary w-[100px]'
 				onClick={stepController.prev}
 			>

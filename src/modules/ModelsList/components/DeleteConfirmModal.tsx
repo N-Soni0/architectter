@@ -1,8 +1,8 @@
 import Button from '@/UI/Button';
 import Modal from '@/UI/Modal';
-import { usePromise } from '@/hooks/usePromise';
-import { useModelStore } from '@/store/modelStore/useModelStore';
-
+import { deleteModel } from '@/api/models/mutations';
+import { QUERY_KEYWORDS } from '@/constants/queryKeywords';
+import { useMutation, useQueryClient } from 'react-query';
 
 interface DeleteConfirmModalProps {
 	model: ModelDoc;
@@ -15,17 +15,23 @@ const DeleteConfirmModal: React.FC<DeleteConfirmModalProps> = ({
 	close,
 	model,
 }) => {
-	const deleteModel = useModelStore((state) => state.deleteModel);
-	const { isLoading, run: deleteModelCallback } = usePromise(deleteModel);
+	const queryClient = useQueryClient();
 
-	const handleDeleteModel = async () => {
-		await deleteModelCallback(model._id);
-
-		close();
-	};
+	const mutation = useMutation(deleteModel,
+		{
+			onSuccess: () => {
+				queryClient.invalidateQueries(QUERY_KEYWORDS.MODELS);
+				close();
+			},
+		}
+	);
 
 	return (
-		<Modal isOpened={isOpened} close={close} disabled={isLoading}>
+		<Modal
+			isOpened={isOpened}
+			close={close}
+			disabled={mutation.isLoading}
+		>
 			<h3 className='font-bold text-lg'>
 				Are you sure you want to delete{' '}
 				<span className='text-accent text-'>{model.name}</span> model?
@@ -36,14 +42,14 @@ const DeleteConfirmModal: React.FC<DeleteConfirmModalProps> = ({
 
 			<div className='w-full flex justify-center items-center gap-5'>
 				<Button
-					isLoading={isLoading}
+					isLoading={mutation.isLoading}
 					className={'btn-error'}
-					onClick={handleDeleteModel}
+					onClick={() => mutation.mutate(model._id)}
 				>
 					Delete
 				</Button>
 				<Button
-					disabled={isLoading}
+					disabled={mutation.isLoading}
 					className={`btn-primary`}
 					onClick={close}
 				>

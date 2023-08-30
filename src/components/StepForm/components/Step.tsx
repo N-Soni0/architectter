@@ -25,18 +25,20 @@ const Step: React.FC<StepProps> = ({ isValid, children, onSubmit, className, ...
 			onSubmit={async (e) => {
 				e.preventDefault();
 
-				if (!onSubmit) return;
-
-				setIsLoading(true);
-				await onSubmit(e);
-				setIsLoading(false);
+				if (onSubmit) {
+					setIsLoading(true);
+					await onSubmit(e);
+					setIsLoading(false);
+				}
 
 				stepController.next();
 			}}
-			className={twMerge('flex flex-col items-center gap-5', className)}
+			className={twMerge('flex flex-col items-center justify-between gap-5 p-2 w-full h-full')}
 			{...props}
 		>
-            {children}
+			<div className={className}>
+				{children}
+			</div>
 
 			<StepButtons
 				isValid={isValid}

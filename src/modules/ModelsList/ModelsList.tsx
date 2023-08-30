@@ -13,8 +13,8 @@ interface ModelsListProps {
 const ModelsList: React.FC<ModelsListProps> = ({ models, isLoading, onModelClick }) => {
     if (isLoading) {
             return (
-                <ul className="flex gap-4 mt-2 overflow-auto h-[7rem]">
-                    {Array.from({ length: 5 }).map((_, index) => (
+                <ul className="grid grid-cols-3 gap-3 w-fit mx-auto mt-5">
+                    {Array.from({ length: 7 }).map((_, index) => (
                         <SkeletonModelListItem key={index} />
                     ))}
                 </ul>
@@ -22,7 +22,7 @@ const ModelsList: React.FC<ModelsListProps> = ({ models, isLoading, onModelClick
     }
 
     return (
-        <ul className="flex gap-4 mt-2 overflow-auto h-[7rem]">
+        <ul className="grid grid-cols-3 gap-3 w-fit mx-auto mt-5">
             <CreateModelButton />
 
             {models.length ? (

@@ -1,41 +1,31 @@
-import { useUserStore } from "@/store/userStore"
-import { useModelStore } from "@/store/modelStore/useModelStore";
-import { useEffect } from "react";
-import { ModelsList } from "@/modules/ModelsList";
-import { usePromise } from "@/hooks/usePromise";
-import { useNavigate } from "react-router-dom";
+import { useUserStore } from '@/store/userStore';
+import { ModelsList } from '@/modules/ModelsList';
+import { useNavigate } from 'react-router-dom';
+import { useUserModels } from '@/hooks/useUserModels';
 
 const MainPage = () => {
-  const user = useUserStore(state => state.user);
-  const models = useModelStore(state => state.models);
-  const getUserModels = useModelStore(state => state.getUserModels);
-  const navigate = useNavigate();
-  const { run: getModels, isLoading } = usePromise(getUserModels);
+	const user = useUserStore((state) => state.user);
+	const navigate = useNavigate();
+	const { data: models, isLoading } = useUserModels(user?._id ?? null)
 
-  useEffect(() => {
-    if (!user?._id) return;
+	return (
+		<div className='container mt-5'>
+			<section>
+				<h2 className='text-xl'>
+					<span className='text-accent font-bold'>{user?.username}'s </span>
+					models
+				</h2>
 
-    getModels(user._id);
-  }, [user?._id, getUserModels])
+				<ModelsList
+					models={models ?? []}
+					isLoading={isLoading}
+					onModelClick={(model) => {
+						navigate(`/model/${model._id}`);
+					}}
+				/>
+			</section>
+		</div>
+	);
+};
 
-  return (
-    <div className="container mt-5">
-      <section>
-        <h2 className="text-xl">
-          <span className="text-accent font-bold">{user?.username}'s </span>
-          models
-        </h2>
-
-        <ModelsList 
-          models={models} 
-          isLoading={isLoading} 
-          onModelClick={(model) => {
-            navigate(`/model/${model._id}`)
-          }}
-        />
-      </section>
-    </div>
-  )
-}
-
-export default MainPage
+export default MainPage;

@@ -5,8 +5,13 @@ import { Auth0Provider } from '@auth0/auth0-react';
 import { BrowserRouter } from 'react-router-dom';
 import { ConvexProviderWithAuth0 } from 'convex/react-auth0';
 import { ConvexReactClient } from 'convex/react';
+import {
+	QueryClient,
+	QueryClientProvider,
+  } from 'react-query'
 
 export const convex = new ConvexReactClient(import.meta.env.VITE_CONVEX_URL as string);
+const queryClient = new QueryClient();
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
 	<Auth0Provider
@@ -20,7 +25,9 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
 	>
 		<ConvexProviderWithAuth0 client={convex}>
 			<BrowserRouter>
-				<App />
+				<QueryClientProvider client={queryClient}> 
+					<App />
+				</QueryClientProvider>
 			</BrowserRouter>
 		</ConvexProviderWithAuth0>
 	</Auth0Provider>

@@ -18,7 +18,8 @@ const ModelViewer: React.FC<ModelViewSceneProps> = ({ floors }) => {
 					position={[20, 30, 20]}
 				/>
 
-				<axesHelper args={[20]} />
+				{import.meta.env.DEV && <axesHelper args={[20]} />}
+				
 
 				<ViewScene floors={floors} />
 			</Canvas>

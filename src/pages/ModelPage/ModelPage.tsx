@@ -2,6 +2,7 @@ import { AccessibilityIcon } from '@/components/AccessibilityIcon';
 import { useModelFloors } from '@/hooks/useModelFloors';
 import { useTargetModel } from '@/hooks/useTargetModel';
 import { FloorsList } from '@/modules/FloorsList';
+import { ModelViewer } from '@/modules/ModelViewer';
 import { Id } from '@convex/_generated/dataModel';
 import { AiOutlinePlus } from 'react-icons/ai';
 import { Link, useNavigate, useParams } from 'react-router-dom';
@@ -13,8 +14,8 @@ const ModelPage = () => {
 	const navigate = useNavigate();
 
 	return (
-		<div className='container h-full py-12 '>
-			<div className='w-1/3 gap-5 flex flex-col justify-between h-full'>
+		<div className='container h-full py-12 flex gap-10 justify-between'>
+			<div className='w-1/2 gap-5 flex flex-col justify-between h-full'>
 				<div className='flex overflow-hidden rounded-sm '>
 					<div className='bg-base-200 w-2/3 p-5'>
 						<h2 className='text-2xl text-accent'>{model?.name}</h2>
@@ -56,6 +57,10 @@ const ModelPage = () => {
 						itemOptions={{ delete: true, edit: true }}
 					/>
 				</div>
+			</div>
+
+			<div className='w-1/2 bg-base-200'>
+				<ModelViewer  floors={floors ?? []} />
 			</div>
 		</div>
 	);

@@ -31,7 +31,7 @@ const EditFloorPage = () => {
           if (!floor) return;
 
 					await mutateAsync({ floorId: floor._id, floorData });
-					navigate(`/model/${modelId}/floors/${floorId}`);
+					navigate(`/model/${modelId}/floor/${floorId}`);
 				}}
 			/>
 		</div>
